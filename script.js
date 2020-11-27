@@ -204,6 +204,29 @@ const enigmes = [
   },
 ];
 
+
+let error = false;
+$('.btn-play').on('click', () => {
+  if ($('#name-user').val() !== '') {
+    // Récupération du nom entré par l'utilisateur + sauvagarde dans le localStorage
+    localStorage.setItem('userName', JSON.stringify($('#name-user').val()));
+    // Passage de la homepage au jeu (balise canvas)
+    $('.home').css('display', 'none');
+    $('.webgl-content').css('display', 'block');
+    var unityInstance = UnityLoader.instantiate(
+      "unityContainer",
+      "Build/mygame.json",
+      { onProgress: UnityProgress }
+    );
+  } else if (!error) {
+    $('#name-user').css({
+      'background-color': '#F97171',
+    });
+    $('#user-info').append('<p><i class="fas fa-exclamation-circle error"></i>Aucun nom entré.</p>');
+    error = true;
+  }
+});
+
 // -- FUNCTIONS --
 function verifyResponse(val, objet) {
   let enigme = enigmes.find((e) => e.objet === objet);
@@ -254,7 +277,7 @@ window.showEnigma = function (objet) {
       let popupEnigme = `<div class="enigme popup" id="enigme-${enigme.objet}"><i class="fas fa-info-circle info"></i><i class="far fa-times-circle close"></i>`;
       popupEnigme += `<p class="text-enigme">${enigme.enonce}</p>`;
       if (enigme.reponsesProposees.length === 0) {
-        popupEnigme += '<input type="text" class="ipt-enigme"/>';
+        popupEnigme += '<input type="text" class="ipt-enigme" autofocus/>';
       } else {
         enigme.reponsesProposees.forEach((proposition) => {
           popupEnigme += `<div class="reponse-enigme ipt-enigme" id="${proposition}">${proposition}</div>`;
