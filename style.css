@@ -110,20 +110,21 @@ p {
   }
 }
 
-.enigme {
+.enigme,
+.resultat-enigme {
   position: relative;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 250px;
+  width: 350px;
   background-color: white;
   border: 1px solid #b8b5b5;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
 }
-.enigme .far {
+.popup .far {
   position: absolute;
   top: 8px;
   right: 10px;
@@ -156,13 +157,29 @@ button {
   color: white;
   border-radius: 8px;
 }
-.resultat-enigme {
+.resultat-enigme-text {
   text-transform: uppercase;
-  margin: 35px 0;
+  margin: 35px auto;
+}
+.resultat-enigme {
+  z-index: 1;
+  text-align: center;
 }
 .win {
   color: #53917e;
 }
 .lose {
   color: #f97171;
+}
+.error {
+  margin-right: 5px;
+  color: #f97171;
+  font-size: 25px;
+}
+
+.info {
+  color: #b8b5b5;
+  position: absolute;
+  top: 8px;
+  left: 10px;
 }

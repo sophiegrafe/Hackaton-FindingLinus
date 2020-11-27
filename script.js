@@ -292,14 +292,9 @@ window.showEnigma = function (objet) {
       }
     });
   }
+
+  // Permet de fermer la popup
+  $(".close").on("click", () => {
+    $(".popup").remove();
+  });
 };
-///
-
-$(".test").on("click", function () {
-  showEnigma($(this).attr("id"));
-});
-
-// Permet de fermer la popup
-$(".close").on("click", () => {
-  $(".popup").hide();
-});
