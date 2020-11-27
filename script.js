@@ -298,3 +298,15 @@ window.showEnigma = function (objet) {
     $(".popup").remove();
   });
 };
+
+// handles the keyboard input in unity
+var gameReady = false;
+// Called by Unity in GameControl's start function
+function GameControlReady() {
+  gameReady = true;
+}
+function FocusCanvas(focus) {
+  if (gameReady) {
+    unityInstance.SendMessage("gameControl", "FocusCanvas", focus);
+  }
+}
