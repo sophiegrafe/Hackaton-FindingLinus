@@ -204,27 +204,30 @@ const enigmes = [
   },
 ];
 
-
 let error = false;
-$('.btn-play').on('click', () => {
-  if ($('#name-user').val() !== '') {
-    // Récupération du nom entré par l'utilisateur + sauvagarde dans le localStorage
-    localStorage.setItem('userName', JSON.stringify($('#name-user').val()));
-    // Passage de la homepage au jeu (balise canvas)
-    $('.home').css('display', 'none');
-    $('.webgl-content').css('display', 'block');
-    var unityInstance = UnityLoader.instantiate(
-      "unityContainer",
-      "Build/mygame.json",
-      { onProgress: UnityProgress }
-    );
-  } else if (!error) {
-    $('#name-user').css({
-      'background-color': '#F97171',
-    });
-    $('#user-info').append('<p><i class="fas fa-exclamation-circle error"></i>Aucun nom entré.</p>');
-    error = true;
-  }
+$(".btn-play").on("click", () => {
+  $(".home").css("display", "none");
+  $(".webgl-content").css("display", "block");
+
+  // Option si input pour le nom de l'utilisateur
+  // if ($('#name-user').val() !== '') {
+  //   // Récupération du nom entré par l'utilisateur + sauvagarde dans le localStorage
+  //   localStorage.setItem('userName', JSON.stringify($('#name-user').val()));
+  //   // Passage de la homepage au jeu (balise canvas)
+  //   $('.home').css('display', 'none');
+  //   $('.webgl-content').css('display', 'block');
+  //   var unityInstance = UnityLoader.instantiate(
+  //     "unityContainer",
+  //     "Build/mygame.json",
+  //     { onProgress: UnityProgress }
+  //   );
+  // } else if (!error) {
+  //   $('#name-user').css({
+  //     'background-color': '#F97171',
+  //   });
+  //   $('#user-info').append('<p><i class="fas fa-exclamation-circle error"></i>Aucun nom entré.</p>');
+  //   error = true;
+  // }
 });
 
 // -- FUNCTIONS --
@@ -289,8 +292,6 @@ window.showEnigma = function (objet) {
       $("body").append(popupEnigme);
       $(".info").on("click", () => {
         $(".infotext").css("display", "block");
-        console.log("hellooooo");
-        console.log(enigme.indice);
       });
     }
     // Change le style de la réponse sélectionnée en lui ajoutant ou retirant une classe
